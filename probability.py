@@ -1,18 +1,24 @@
 import datetime
 import numpy
 import pytz
+import google.auth.exceptions
 
 from google.cloud import bigquery
 
 SECONDS_IN_TWO_HOURS = 2 * 60 * 60
 SECONDS_IN_TEN_MIN = 10 * 60
 
-client = bigquery.Client()
+try:
+    client = bigquery.Client()
+except google.auth.exceptions.DefaultCredentialsError:
+    print("Invalid credentials; Unable to access database.")
+    exit(-1)
 
 query = client.query(f"""
     SELECT number, timestamp
     FROM `bigquery-public-data.crypto_bitcoin.blocks`
-    ORDER BY number DESC
+    ORDER BY number 
+    DESC
 """)
 
 points = {}

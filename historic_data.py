@@ -1,10 +1,15 @@
+import google.auth.exceptions
 from google.cloud import bigquery
 import datetime
 import pytz
 
 SECONDS_IN_TWO_HOURS = 2 * 60 * 60
 
-client = bigquery.Client()
+try:
+    client = bigquery.Client()
+except google.auth.exceptions.DefaultCredentialsError:
+    print("Invalid credentials; Unable to access database.")
+    exit(-1)
 
 query = client.query("""
     SELECT number, timestamp
