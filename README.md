@@ -7,3 +7,10 @@ As such you must have a google service account key and set the `GOOGLE_APPLICATI
 This table can be viewed at
 
 https://www.kaggle.com/datasets/bigquery/bitcoin-blockchain?select=blocks
+
+
+As of the time of this writing these two files give the following answers:
+
+Probability of a block being mined 2 hours after the previous block: `0.000420241312475818%`
+
+Total consecutive blocks mines more than 2 hours apart: `14600`
